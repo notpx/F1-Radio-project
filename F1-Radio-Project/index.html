@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
+  
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">JAMES</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">LEC</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">AMG</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">MAX</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">STUPID</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">CHECO</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">RBR</span>
+    </div>
+   
+  </div>
+<div>
+  <audio data-key="65" src="sounds/JAMES.mpeg"></audio>
+  <audio data-key="83" src="sounds/LEC.mpeg"></audio>
+  <audio data-key="68" src="sounds/AMG.mpeg"></audio>
+  <audio data-key="70" src="sounds/MAX.mpeg"></audio>
+  <audio data-key="71" src="sounds/STUPID.mpeg"></audio>
+  <audio data-key="72" src="sounds/CHECO.mpeg"></audio>
+  <audio data-key="74" src="sounds/RBR.mp3"></audio>
+</div>
+
+<div class="disclaimer">
+  <h3>
+  I don't own the audio and picture. The credits goes to respective owners. This video is purely fan made, and will not be used for profit  or illegal sharing.
+Fair use
+Copyright Disclaimer under Section 107 of the copyright act 1976, allowance is made for fair use for purposes such as criticism, comment, news reporting, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favour of fair use.
+</h3>
+</div>
+
+  <script>
+    window.addEventListener('keydown' , function(e){
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return;
+      audio.currentTime = 0;
+      audio.play();
+      key.classList.add('playing');
+    });
+    
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+      
+    }
+    
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend' , removeTransition));
+    
+    </script>
+
+
+
+
+</body>
+</html>
